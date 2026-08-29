@@ -363,8 +363,8 @@ export default function AddWorkoutWizard() {
               </h4>
               <div className="space-y-2">
                 {sets.map((s, idx) => (
-                  <div key={idx} className="flex justify-between items-center gap-3 bg-white/10 p-4 rounded-xl border border-white/10">
-                    <div className="flex items-center gap-3 flex-1">
+                  <div key={idx} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white/10 p-4 rounded-xl border border-white/10">
+                    <div className="flex items-center gap-3 flex-wrap">
                       <span className="text-cyan-400 font-bold w-6">{idx + 1}</span>
                       <span className="text-xs px-2 py-1 rounded-full bg-white/10 text-gray-300 whitespace-nowrap">
                         {SET_TYPE_LABELS[s.setType]}
@@ -372,25 +372,29 @@ export default function AddWorkoutWizard() {
                       <span className="text-gray-300 font-semibold whitespace-nowrap">
                         {s.weight} {selectedType.category === 'EXTERNAL_WEIGHT' ? 'kg' : 'kg leste'}
                       </span>
-                      <input
-                        type="number"
-                        min={1}
-                        placeholder="reps"
-                        value={s.reps}
-                        onChange={(e) =>
-                          updateSet(idx, { reps: e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value) || 1) })
-                        }
-                        className="w-20 px-2 py-1.5 bg-white/10 border border-white/20 rounded-lg text-center text-white focus:ring-2 focus:ring-cyan-400 outline-none"
-                      />
-                      <span className="text-gray-400 text-sm">reps</span>
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => removeSet(idx)}
-                      className="p-2 bg-red-600/80 hover:bg-red-700 text-white rounded-lg transition-all"
-                    >
-                      <X size={18} />
-                    </button>
+                    <div className="flex items-center justify-between gap-3 sm:justify-end">
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="number"
+                          min={1}
+                          placeholder="reps"
+                          value={s.reps}
+                          onChange={(e) =>
+                            updateSet(idx, { reps: e.target.value === '' ? '' : Math.max(1, parseInt(e.target.value) || 1) })
+                          }
+                          className="w-20 px-2 py-1.5 bg-white/10 border border-white/20 rounded-lg text-center text-white focus:ring-2 focus:ring-cyan-400 outline-none"
+                        />
+                        <span className="text-gray-400 text-sm">reps</span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => removeSet(idx)}
+                        className="p-2 bg-red-600/80 hover:bg-red-700 text-white rounded-lg transition-all"
+                      >
+                        <X size={18} />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
