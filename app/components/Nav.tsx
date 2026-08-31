@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Dumbbell, Zap, ListChecks, LayoutList, TrendingUp, LogOut, Settings2 } from 'lucide-react';
+import { Dumbbell, Zap, ListChecks, LayoutList, TrendingUp, LogOut, Settings2, Scale } from 'lucide-react';
 
 const LINKS = [
   { href: '/add', label: 'Ajouter', icon: Zap },
   { href: '/history', label: 'Historique', icon: LayoutList },
   { href: '/progress', label: 'Progression', icon: TrendingUp },
+  { href: '/body-weight', label: 'Poids du corps', icon: Scale },
   { href: '/exercise-types', label: 'Types de séance', icon: Settings2 },
   { href: '/templates', label: 'Séances préenregistrées', icon: ListChecks },
 ];

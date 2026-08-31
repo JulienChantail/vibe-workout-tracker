@@ -13,9 +13,13 @@ export function estimateOneRepMax(weight: number, reps: number): number {
  * 1RM d'une séance : meilleure estimation (Epley) parmi les séries de travail
  * uniquement (les séries d'échauffement/récupération ne sont pas à l'effort max
  * et fausseraient l'estimation).
+ *
+ * `bodyWeightKg` doit être ajouté au poids de chaque série pour les exercices
+ * de catégorie BODYWEIGHT_LESTE (dips, tractions lestées...), où le poids saisi
+ * n'est que le leste : le poids réellement soulevé est corps + leste.
  */
-export function sessionOneRepMax(sets: SetLike[]): number | null {
+export function sessionOneRepMax(sets: SetLike[], bodyWeightKg = 0): number | null {
   const working = sets.filter((s) => s.setType === 'WORKING' && s.reps > 0);
   if (working.length === 0) return null;
-  return Math.max(...working.map((s) => estimateOneRepMax(s.weight, s.reps)));
+  return Math.max(...working.map((s) => estimateOneRepMax(s.weight + bodyWeightKg, s.reps)));
 }

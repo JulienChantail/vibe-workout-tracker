@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Plus, Trash2, ArrowUp, ArrowDown, ListChecks } from 'lucide-react';
+import { Plus, Minus, Trash2, ArrowUp, ArrowDown, ListChecks } from 'lucide-react';
 import { SET_TYPE_LABELS, TIER_LABELS } from '../../components/setTypeLabels';
 
 type ExerciseType = { id: string; name: string; weightLabel: string };
@@ -251,14 +251,32 @@ export default function TemplatesManager() {
               </div>
               <div>
                 <label htmlFor="tpl-block-count" className="block text-xs text-gray-400 mb-1">Nombre de séries</label>
-                <input
-                  id="tpl-block-count"
-                  type="number"
-                  min={1}
-                  value={blockDraft.count}
-                  onChange={(e) => setBlockDraft((b) => ({ ...b, count: Math.max(1, parseInt(e.target.value) || 1) }))}
-                  className="w-24 px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white outline-none"
-                />
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setBlockDraft((b) => ({ ...b, count: Math.max(1, b.count - 1) }))}
+                    className="p-2 bg-red-600/80 hover:bg-red-700 text-white rounded-lg transition-all"
+                    aria-label="Diminuer le nombre de séries"
+                  >
+                    <Minus size={16} />
+                  </button>
+                  <input
+                    id="tpl-block-count"
+                    type="number"
+                    min={1}
+                    value={blockDraft.count}
+                    onChange={(e) => setBlockDraft((b) => ({ ...b, count: Math.max(1, parseInt(e.target.value) || 1) }))}
+                    className="w-16 px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white text-center outline-none"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setBlockDraft((b) => ({ ...b, count: b.count + 1 }))}
+                    className="p-2 bg-green-600/80 hover:bg-green-700 text-white rounded-lg transition-all"
+                    aria-label="Augmenter le nombre de séries"
+                  >
+                    <Plus size={16} />
+                  </button>
+                </div>
               </div>
               <button
                 type="button"
