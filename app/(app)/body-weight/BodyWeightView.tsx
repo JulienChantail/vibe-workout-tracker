@@ -102,7 +102,7 @@ export default function BodyWeightView() {
           <Dumbbell size={20} className="text-cyan-400" /> 1RM actuels — exercices lestés
         </h2>
         <p className="text-sm text-gray-400 mb-6">
-          Meilleure estimation (Epley) toutes séances confondues, corps + leste inclus.
+          Meilleure estimation (Epley) toutes séances confondues, en équivalent leste (poids du corps déduit du 1RM total).
         </p>
 
         {loading ? (
